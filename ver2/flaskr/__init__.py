@@ -36,41 +36,29 @@ def create_app(test_config=None):
 
 ### APP CREATION END ######################################
 
-### DB FUNCTIONS ##########################################
-
-    from . import db
-    db.init_app(app)
-    
-    return app
-
-### DB FUNCTIONS END ######################################
-    
 ### HTTPS REQUESTS ########################################
-
-    # Homepage: GET
     @app.route('/')
     def homepage(): 
         title = "PythonTrader"
         return render_template('home.html', title=title)
-
+    
     # Homepage: Controlling the Buttons - Navigates to the Titled Page on the button
     @app.route('/', methods=['POST'])
     def ui_nav_buttons_hp(): # UI Navigation Buttons Homepage
         if request.method == 'POST': 
             if request.form.get('positions') == 'Positions': # Positions Button
-                # add code to pull all positions from sql, then...
-                """
+            # add code to pull all positions from sql, then...
+            
                 positions_list = list()
-                for all positions in TABLE:(for p in positions)
-                    positions_list.append(p.to_string())
-                """
-                positions_list = Position.query.all()
+                x = Position('apple', 'aapl', '100', '')
+            
+                #positions_list = Position.query.all()
                 return render_template('positions.html', positions=positions_list)
             
             elif request.form.get('orders') == 'Orders': # Orders Button
                 print('order_button')
-                orders_list = Order.query.all()
-                return render_template('orders.html', orders=orders_list)
+            #orders_list = Order.query.all()
+                return render_template('orders.html'""", orders=orders_list""")
             elif request.form.get('settings') == 'Settings':
                 print('settings_button')
                 return render_template('settings.html')
@@ -79,7 +67,17 @@ def create_app(test_config=None):
                 pass
         else:
             return render_template('home.html')
-        
+    
 ### HTTPS REQUESTS END ####################################
+
+### DB FUNCTIONS ##########################################
+
+    from . import db
+    db.init_app(app)
+    
+    return app
+
+### DB FUNCTIONS END ######################################
+
 ## CREATE APP END #########################################
 # EOF #####################################################

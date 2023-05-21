@@ -38,20 +38,13 @@
 </head>
 <body>
   <div class="container">
-    <!-- TO CHANGE THE TEXT, convert all positions with toString() and pass into a Jinja template
-            The command will look like render_template(name.html, positions=positions) and use:
-            <ul>
-                {% for position in positions %}
-                    <li>{{ position }}</li>
-                {% endfor %}
-            <ul>
-    -->
+    <!-- TO CHANGE THE TEXT, convert all positions with toString() and pass into a Jinja template -->
     <h1>Positions</h1>
-    <ul>
-      {% for p in portfolio.stocks %}
-        <li>{{ p.to_string() }}</li>
-      {% endfor %}
-    </ul>
+      <ul>
+        {% for position in positions %}
+            <li>{{ position }}</li>
+        {% endfor %}
+      </ul>
   </div>
 </body>
 </html>
